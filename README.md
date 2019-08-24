@@ -82,3 +82,7 @@ $ npm install -g nodemon
     ```
     http://localhost:3000
     ```
+
+3. 關閉 Node.js Server
+    
+    回到 cmd 按下 Ctrl + C
