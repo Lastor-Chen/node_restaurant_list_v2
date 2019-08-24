@@ -19,7 +19,7 @@ app.set('view engine', 'hbs')
 app.use(express.static('public'))
 
 // 相關 data 與 設定
-const port = 3000
+const port = process.env.PORT || 3000
 const restaurants = require('./restaurant.json')
 
 
