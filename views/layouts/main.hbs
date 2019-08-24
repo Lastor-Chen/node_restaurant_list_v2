@@ -7,10 +7,10 @@
   <!-- CSS plug-ins -->
   <link rel="stylesheet" href="/css/bootstrap/4.3.1/bootstrap.min.css">
   <link rel="stylesheet" href="/css/font-awesome/5.8.1/css/all.min.css">
-  <!-- Custom CSS -->
+  <!-- custom CSS -->
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/{{partial_css}}.css">
-  <title>Document</title>
+  <title>Restaurant List</title>
 </head>
 <body>
   <header>
@@ -20,7 +20,7 @@
         <a class="navbar-brand" href="/">
           <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
             width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
-          我的餐廳清單
+          <span>我的餐廳清單</span>
         </a>
       </div>
     </nav>
@@ -31,7 +31,20 @@
   {{!-- partial layout --}}
   {{{ body }}}
 
-  <!-- Script plug-ins -->
+  <footer class="bg-dark mt-4">
+    <div class="container py-4 text-center">
+      <div class="d-inline-block mx-auto">
+        <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png" width="30"
+          height="30" class="d-block mx-auto" alt="我的餐廳清單">
+        <span class="d-block text-white-50">
+          Made in 2019. <br>
+          Server system built on Node.js and Express framework.
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- script plug-ins -->
   <script src="/js/jquery/jquery-3.4.1.min.js"></script>
   <script src="/js/popper/1.14.7/popper.min.js"></script>
   <script src="/js/bootstrap/4.3.1/bootstrap.min.js"></script>
