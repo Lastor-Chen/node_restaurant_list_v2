@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- CSS plug-ins -->
+  <link rel="stylesheet" href="/css/bootstrap/4.3.1/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font-awesome/5.8.1/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/{{partial_css}}.css">
+  <title>Document</title>
+</head>
+<body>
+  <header>
+    <!-- navigation -->  
+    <nav class="navbar navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
+            width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
+          我的餐廳清單
+        </a>
+      </div>
+    </nav>
+  
+    <div class="banner"></div>
+  </header>
+  
+  {{!-- partial layout --}}
+  {{{ body }}}
+
+  <!-- Script plug-ins -->
+  <script src="/js/jquery/jquery-3.4.1.min.js"></script>
+  <script src="/js/popper/1.14.7/popper.min.js"></script>
+  <script src="/js/bootstrap/4.3.1/bootstrap.min.js"></script>
+</body>
+</html>
+
