@@ -51,8 +51,9 @@ app.get('/search', (req, res) => {
 
 app.get('/restaurants/:id', (req, res) => {
   const id = +req.params.id
+  const results = restaurants.results.find(item => item.id === id)
   const option = {
-    restaurant: restaurants.results[id - 1], 
+    restaurant: results, 
     partial_css: 'show' 
   }
 
