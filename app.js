@@ -5,6 +5,17 @@
 const express = require('express')
 const app = express()
 
+// 引入資料庫 ODM
+const mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true })
+
+const db = mongoose.connection
+db.on('error', console.error.bind(console, 'mongoDB connection error.'))
+db.once('open', console.log.bind(console, 'mongoDB is connected.'))
+
+// 引入 mongoose model
+const Restaurant = require('./models/restaurant.js')
+
 // 設置 template engine
 const exphbs = require('express-handlebars')
 const option = {
@@ -20,18 +31,20 @@ app.use(express.static('public'))
 
 // 相關 data 與 設定
 const port = process.env.PORT || 3000
-const restaurants = require('./restaurant.json')
+// const restaurants = require('./restaurant.json')
 
 
 // ////////////////
 // 路由設定
 app.get('/', (req, res) => {
-  const option = {
-    restaurants: restaurants.results,
-    partial_css: 'index',
-  }
+  res.redirect('/index')
+})
 
-  res.render('index', option)
+app.get('/index', (req, res) => {
+  Restaurant.find( (err, restaurants) => {
+    if (err) return console.error(err)
+    res.render('index', { partial_css: 'index', restaurants })
+  })
 })
 
 app.get('/search', (req, res) => {
