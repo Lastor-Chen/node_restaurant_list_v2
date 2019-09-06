@@ -47,6 +47,14 @@ app.get('/index', (req, res) => {
   })
 })
 
+app.get('/restaurants/:id', (req, res) => {
+  // const results = restaurants.results.find(item => item.id === id)
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    if (err) return console.error(err)
+    res.render('show', { partial_css: 'show', restaurant })
+  }) 
+})
+
 app.get('/search', (req, res) => {
   // 將 search keyword 轉成正規表達式來比對餐廳名稱
   const keyword = req.query.keyword
@@ -62,16 +70,7 @@ app.get('/search', (req, res) => {
   res.render('index', option)
 })
 
-app.get('/restaurants/:id', (req, res) => {
-  const id = +req.params.id
-  const results = restaurants.results.find(item => item.id === id)
-  const option = {
-    restaurant: results, 
-    partial_css: 'show' 
-  }
 
-  res.render('show', option)
-})
 
 
 // ////////////////
