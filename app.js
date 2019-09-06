@@ -41,7 +41,9 @@ app.get('/', (req, res) => {
 app.get('/index', (req, res) => {
   Restaurant.find( (err, restaurants) => {
     if (err) return console.error(err)
-    res.render('index', { css: 'index', js: 'catchError', restaurants })
+
+    const js = { delBtn: "delBtn", catch: 'catchError' }
+    res.render('index', { css: 'index', js, restaurants })
   })
 })
 
@@ -59,7 +61,9 @@ app.get('/restaurants/:id/edit', (req, res) => {
 app.get('/restaurants/:id', (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
-    res.render('show', { css: 'show', js: 'catchError', restaurant })
+
+    const js = { delBtn: "delBtn", catch: 'catchError' }
+    res.render('show', { css: 'show', js, restaurant })
   }) 
 })
 
@@ -85,7 +89,9 @@ app.get('/search', (req, res) => {
     const restaurants = collection.filter(
       item => item.name.match(regexp) || item.category.match(regexp)
     )
-    res.render('index', { css: 'index', js: 'catchError', restaurants, keyword })
+
+    const js = { delBtn: "delBtn", catch: 'catchError' }
+    res.render('index', { css: 'index', js, restaurants, keyword })
   })
 })
 
