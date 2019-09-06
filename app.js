@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
 app.get('/index', (req, res) => {
   Restaurant.find( (err, restaurants) => {
     if (err) return console.error(err)
-    res.render('index', { partial_css: 'index', restaurants })
+    res.render('index', { css: 'index', js: 'catchError', restaurants })
   })
 })
 
@@ -59,7 +59,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
 app.get('/restaurants/:id', (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
-    res.render('show', { partial_css: 'show', restaurant })
+    res.render('show', { css: 'show', js: 'catchError', restaurant })
   }) 
 })
 
@@ -85,7 +85,7 @@ app.get('/search', (req, res) => {
     const restaurants = collection.filter(
       item => item.name.match(regexp) || item.category.match(regexp)
     )
-    res.render('index', { partial_css: 'index', restaurants, keyword })
+    res.render('index', { css: 'index', js: 'catchError', restaurants, keyword })
   })
 })
 
