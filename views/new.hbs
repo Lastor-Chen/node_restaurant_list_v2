@@ -1,10 +1,10 @@
-<div class="container">
-  <div class="w-75 mx-auto">
+<div class="container my-5">
+  <div class="w-75 mx-auto border border-secondary p-4">
     <form action="/restaurants/new" method="POST">
       <div class="form-row">
         <div class="form-group col-6">
-          <label for="name">餐廳名稱</label>
-          <input type="text" class="form-control" id="name" name="name" placeholder="restaurant name">
+          <label for="name">餐廳名稱 (必填)</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="restaurant name" required>
         </div>
         <div class="form-group col-6">
           <label for="category">分類</label>
@@ -42,7 +42,7 @@
         </div>
       </div>
       <div class="text-center">
-        <button type="submit" class="btn btn-primary mx-auto">完成</button>
+        <button type="submit" class="btn btn-primary">完成</button>
         <a href="/" class="btn btn-primary">取消</a>
       </div>
     </form>

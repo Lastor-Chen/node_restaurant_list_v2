@@ -12,7 +12,7 @@
   * 透過 JSON data 生成 HTML 內容。
 
 ## Preview Pages
-![preview](/img/preview.jpg)
+![preview](./public/img/preview.jpg)
 
 #### 功能
 * User 可以在首頁看到所有餐廳與概述

@@ -72,7 +72,10 @@ app.get('/search', (req, res) => {
 })
 
 app.post('/restaurants/new', (req, res) => {
-  Restaurant.create(req.body)
+  const input = req.body
+  if (!input.image) { input.image = "/img/default_img.png" }
+  console.log(input)
+  Restaurant.create(input)
   res.redirect('/')
 })
 
