@@ -77,15 +77,16 @@ app.get('/search', (req, res) => {
   // 將 search keyword 轉成正規表達式來比對餐廳名稱
   const keyword = req.query.keyword
   const regexp = new RegExp(keyword, 'i')
-  const results = restaurants.results.filter(item => item.name.match(regexp))
-  
-  const option = {
-    restaurants: results,
-    partial_css: 'index',
-    keyword: keyword,
-  }
 
-  res.render('index', option)
+  Restaurant.find( (err, collection) => {
+    if (err) return console.error(err)
+
+    // 過濾 name & category
+    const restaurants = collection.filter(
+      item => item.name.match(regexp) || item.category.match(regexp)
+    )
+    res.render('index', { partial_css: 'index', restaurants, keyword })
+  })
 })
 
 app.post('/restaurants/new', (req, res) => {
