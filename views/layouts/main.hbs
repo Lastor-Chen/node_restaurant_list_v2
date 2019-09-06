@@ -9,7 +9,9 @@
   <link rel="stylesheet" href="/css/font-awesome/5.8.1/css/all.min.css">
   <!-- custom CSS -->
   <link rel="stylesheet" href="/css/main.css">
+  {{#if partial_css}}
   <link rel="stylesheet" href="/css/{{partial_css}}.css">
+  {{/if}}
   <title>Restaurant List</title>
 </head>
 <body>
@@ -22,6 +24,7 @@
             width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
           <span>我的餐廳清單</span>
         </a>
+        <a href="/restaurants/new">新增餐廳</a>
       </div>
     </nav>
   

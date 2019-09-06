@@ -26,12 +26,10 @@ const option = {
 app.engine('hbs', exphbs(option) )
 app.set('view engine', 'hbs')
 
-// 定義 static files 根目錄位置
+// Server 相關 setting
 app.use(express.static('public'))
-
-// 相關 data 與 設定
-const port = process.env.PORT || 3000
-// const restaurants = require('./restaurant.json')
+app.use(express.urlencoded({ extended: true }))
+app.set('port', process.env.PORT || 3000)
 
 
 // ////////////////
@@ -47,8 +45,11 @@ app.get('/index', (req, res) => {
   })
 })
 
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+
 app.get('/restaurants/:id', (req, res) => {
-  // const results = restaurants.results.find(item => item.id === id)
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
     res.render('show', { partial_css: 'show', restaurant })
@@ -70,11 +71,14 @@ app.get('/search', (req, res) => {
   res.render('index', option)
 })
 
-
+app.post('/restaurants/new', (req, res) => {
+  Restaurant.create(req.body)
+  res.redirect('/')
+})
 
 
 // ////////////////
 // 啟動 Server
-app.listen(port, () => {
-  console.log(`Node.js Server with Express is running => http://localhost:${port}`)
+app.listen(app.get('port'), () => {
+  console.log(`Node.js Server with Express is running => http://localhost:${app.get('port')}`)
 })
