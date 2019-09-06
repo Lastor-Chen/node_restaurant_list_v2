@@ -49,6 +49,13 @@ app.get('/restaurants/new', (req, res) => {
   res.render('new')
 })
 
+app.get('/restaurants/:id/edit', (req, res) => {
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    if (err) return console.error(err)
+    res.render('edit', { restaurant })
+  })
+})
+
 app.get('/restaurants/:id', (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
@@ -73,12 +80,24 @@ app.get('/search', (req, res) => {
 
 app.post('/restaurants/new', (req, res) => {
   const input = req.body
-  if (!input.image) { input.image = "/img/default_img.png" }
-  console.log(input)
+
   Restaurant.create(input)
   res.redirect('/')
 })
 
+app.post('/restaurants/:id/edit', (req, res) => {
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    if (err) return console.error(err)
+    
+    for (const key in req.body) {
+      restaurant[key] = req.body[key]
+    }
+    restaurant.save(err => {
+      if (err) return console.error(err)
+      res.redirect('/restaurants/' + req.params.id)
+    })
+  })
+})
 
 // ////////////////
 // 啟動 Server

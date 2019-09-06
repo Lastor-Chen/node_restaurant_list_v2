@@ -31,7 +31,17 @@
       <p class="mt-3 mb-5">
         {{restaurant.description}}
       </p>
+
+      {{#if restaurant.image}}
       <img class="restaurant-img rounded mx-auto d-block mb-4" src="{{restaurant.image}}" alt="{{restaurant.name}}">
+      {{else}}
+      <img class="restaurant-img rounded mx-auto d-block mb-4" src="/img/default_img.png" alt="{{restaurant.name}}">
+      {{/if}}
+
+      <div class="text-center">
+        <a href="/restaurants/{{restaurant.id}}/edit" class="btn btn-primary">編輯</a>
+        <a href="#" class="btn btn-primary">刪除</a>
+      </div>
     </div>
   </div>
 </div>

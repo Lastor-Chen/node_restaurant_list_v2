@@ -1,0 +1,58 @@
+<div class="container my-5">
+  <div class="w-75 mx-auto border border-secondary p-4">
+    <form action="/restaurants/{{restaurant.id}}/edit" method="POST">
+      <div class="form-row">
+        <div class="form-group col-6">
+          <label for="name">餐廳名稱 (必填)</label>
+          <input type="text" class="form-control" id="name" name="name" value="{{restaurant.name}}"
+            placeholder="restaurant name" required>
+        </div>
+        <div class="form-group col-6">
+          <label for="category">分類</label>
+          <input type="text" class="form-control" id="category" name="category" value="{{restaurant.category}}"
+            placeholder="restaurant category">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-6">
+          <label for="rating">評價</label>
+          <input type="text" class="form-control" id="rating" name="rating" value="{{restaurant.rating}}"
+            placeholder="restaurant rating">
+        </div>
+        <div class="form-group col-6">
+          <label for="phone">電話</label>
+          <input type="text" class="form-control" id="phone" name="phone" value="{{restaurant.phone}}"
+            placeholder="restaurant phone">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-6">
+          <label for="image">圖片連結</label>
+          <input type="text" class="form-control" id="image" name="image" value="{{restaurant.image}}"
+            placeholder="restaurant image">
+        </div>
+        <div class="form-group col-6">
+          <label for="location">地址</label>
+          <input type="text" class="form-control" id="location" name="location" value="{{restaurant.location}}"
+            placeholder="restaurant location">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-6">
+          <label for="google_map">地圖資訊</label>
+          <input type="text" class="form-control" id="google_map" name="google_map" value="{{restaurant.google_map}}"
+            placeholder="restaurant google_map">
+        </div>
+        <div class="form-group col-6">
+          <label for="description">描述</label>
+          <input type="text" class="form-control" id="description" name="description" value="{{restaurant.description}}"
+            placeholder="restaurant description">
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">完成</button>
+        <a href="/restaurants/{{restaurant.id}}" class="btn btn-primary">取消</a>
+      </div>
+    </form>
+  </div>
+</div>
