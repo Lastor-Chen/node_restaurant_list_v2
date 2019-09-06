@@ -1,6 +1,6 @@
 # Restaurant List v2.0 (Node.js + MongoDB)
-A restaurant list app.
-This is a student project that built on Node.js with Express framework.
+A restaurant list app. <br>
+This is a student project that built on Node.js with Express framework. <br>
 Database used mongoDB.
 
 簡易的餐廳清單APP。 <br>
@@ -104,7 +104,7 @@ Database used mongoDB.
 1. 直接於 Github 上用瀏覽器下載 ZIP file
 2. 用 Git clone 專案
 ```
-$ git clone https://github.com/Lastor-Chen/node_sound_stupid.git [資料夾名稱]
+$ git clone https://github.com/Lastor-Chen/node_restaurant_list_v2.git [資料夾名稱]
 ```
 
 #### Download Node.js
@@ -117,7 +117,7 @@ $ git clone https://github.com/Lastor-Chen/node_sound_stupid.git [資料夾名�
 | nvm-macOS     | [Link to](https://github.com/nvm-sh/nvm) |
 
 #### Download dependency npm packages
-已在 package.json 中登入相關訊息，可直接執行下列指定安裝所需套件。
+已在 package.json 中登入相關訊息，可直接執行下列指令安裝所需套件。
 ```
 $ npm install
 ```
@@ -126,7 +126,7 @@ $ npm install
 本機端必須安裝 mongoDB 才能執行此專案。 <br>
 請連結到 mongoDB 官方網站[下載](https://www.mongodb.com/download-center/community)。
 
-※ 注意，Windows 用戶可能會於安裝 GUI Compass 時出問題。建議安裝時不勾選，改用 [Robo 3T](https://robomongo.org/) 取代。
+※ 注意，Windows 用戶可能會於安裝 GUI Compass 時出問題。建議安裝時不勾選，另行安裝 [Robo 3T](https://robomongo.org/)。
 
 #### 選擇安裝 nodemon
 本專案推薦使用 [nodemon](https://github.com/remy/nodemon) 來取代原生的 Node.js 啟動方法。
