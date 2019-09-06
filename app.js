@@ -46,13 +46,13 @@ app.get('/index', (req, res) => {
 })
 
 app.get('/restaurants/new', (req, res) => {
-  res.render('new')
+  res.render('newEdit', { new: 'new' })
 })
 
 app.get('/restaurants/:id/edit', (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
-    res.render('edit', { restaurant })
+    res.render('newEdit', { restaurant })
   })
 })
 
