@@ -63,6 +63,16 @@ app.get('/restaurants/:id', (req, res) => {
   }) 
 })
 
+app.get('/restaurants/:id/delete', (req, res) => {
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    if (err) return console.error(err)
+    restaurant.remove(err => {
+      if (err) return console.error(err)
+      res.redirect('/')
+    })
+  })
+})
+
 app.get('/search', (req, res) => {
   // 將 search keyword 轉成正規表達式來比對餐廳名稱
   const keyword = req.query.keyword
@@ -88,7 +98,7 @@ app.post('/restaurants/new', (req, res) => {
 app.post('/restaurants/:id/edit', (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
-    
+
     for (const key in req.body) {
       restaurant[key] = req.body[key]
     }
