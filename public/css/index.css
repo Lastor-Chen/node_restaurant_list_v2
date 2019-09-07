@@ -36,8 +36,30 @@
   color: #6c757d;
 }
 
-.card img{
+.card .a-img {
+  position: relative;
+}
+
+.card img {
   height: 180px;
+}
+
+.card img:hover {
+  filter: brightness(50%)
+}
+
+.card .fa-eye {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 1.5rem);
+  font-size: 3rem;
+  color: hsl(0, 0%, 90%);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.card img:hover + .fa-eye {
+  opacity: 1;
 }
 
 .card-title{

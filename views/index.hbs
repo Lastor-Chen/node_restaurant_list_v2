@@ -24,12 +24,13 @@
 
         {{#each restaurants}} 
           <div class="card mb-3 text-secondary">
-            <a href="/restaurants/{{this.id}}">
+            <a href="/restaurants/{{this.id}}" class="a-img">
               {{#if this.image}}
               <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
               {{else}}
               <img class="card-img-top" src="/img/default_img.png" alt="{{this.name}}">
               {{/if}}
+              <i class="far fa-eye"></i>
             </a>
             <div class="card-body p-3">
               <a href="/restaurants/{{this.id}}" class="show-link">
