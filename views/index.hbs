@@ -18,6 +18,24 @@
 
 <!-- restaurant list -->
 <div class="container mt-5">
+  {{!-- drop-down --}}
+  <div class="row">
+    <div class="col-md-10 col-12 mx-auto mb-3">
+      <div class="dropdown">
+        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="sort-menu" data-toggle="dropdown">
+          排序
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/index?sort=-createdAt">按最新</a>
+          <a class="dropdown-item" href="/index?sort=createdAt">按最舊</a>
+          <a class="dropdown-item" href="/index?sort=name">按名稱</a>
+          <a class="dropdown-item" href="/index?sort=category">按類別</a>
+          <a class="dropdown-item" href="/index?sort=-rating">按評價</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
       <div class="card-columns">

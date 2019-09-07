@@ -30,7 +30,8 @@ const restaurantSchema = new mongoose.Schema({
   description: {
     type: String
   }
-})
+
+}, { timestamps: true })  // 自動打時間戳
 
 const Restaurant = mongoose.model('restaurant', restaurantSchema)
 
