@@ -20,7 +20,7 @@
 <div class="container mt-5">
   {{!-- drop-down --}}
   <div class="row">
-    <div class="col-md-10 col-12 mx-auto mb-3">
+    <div class="col-auto mb-3">
       <div class="dropdown">
         <button class="btn btn-outline-primary dropdown-toggle" type="button" id="sort-menu" data-toggle="dropdown">
           排序
@@ -37,44 +37,41 @@
   </div>
 
   <div class="row">
-    <div class="col-md-10 col-12 mx-auto">
-      <div class="card-columns">
-
-        {{#each restaurants}} 
-          <div class="card mb-3 text-secondary">
-            <a href="/restaurants/{{this.id}}" class="a-img">
-              {{#if this.image}}
-              <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
-              {{else}}
-              <img class="card-img-top" src="/img/default_img.png" alt="{{this.name}}">
-              {{/if}}
-              <i class="far fa-eye"></i>
-            </a>
-            <div class="card-body p-3">
-              <a href="/restaurants/{{this.id}}" class="show-link">
-                <h6 class="card-title mb-1 d-inline">{{this.name}}</h6>
-              </a>
-              <div class="restaurant-category mb-1">
-                <i class="fas fa-utensils pr-2"></i> {{this.category}}
-              </div>
-              <div class="row">
-                <div class="col-lg-4 col-12">
-                  <span class="badge badge-pill badge-danger font-weight-normal">
-                    {{this.rating}}
-                    <i class="fas fa-star fa-xs"></i>
-                  </span>
-                </div>
-                <div class="col-lg-8 col-12 text-right">
-                  <a href="/restaurants/{{this.id}}/edit" class="btn btn-primary">編輯</a>
-                  <a href="javascript:;" class="btn btn-outline-secondary del" data-id="{{this.id}}" data-toggle="modal" data-target="#delModal">刪除</a>
-                </div>
-              </div>
+    {{#each restaurants}} 
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+      <div class="card mb-3 text-secondary">
+        <a href="/restaurants/{{this.id}}" class="a-img">
+          {{#if this.image}}
+          <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">
+          {{else}}
+          <img class="card-img-top" src="/img/default_img.png" alt="{{this.name}}">
+          {{/if}}
+          <i class="far fa-eye"></i>
+        </a>
+        <div class="card-body p-3">
+          <a href="/restaurants/{{this.id}}" class="show-link">
+            <h6 class="card-title mb-1 d-inline">{{this.name}}</h6>
+          </a>
+          <div class="restaurant-category mb-1">
+            <i class="fas fa-utensils pr-2"></i> {{this.category}}
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-12">
+              <span class="badge badge-pill badge-danger font-weight-normal">
+                {{this.rating}}
+                <i class="fas fa-star fa-xs"></i>
+              </span>
+            </div>
+            <div class="col-lg-8 col-12 text-right">
+              <a href="/restaurants/{{this.id}}/edit" class="btn btn-primary">編輯</a>
+              <a href="javascript:;" class="btn btn-outline-secondary del" data-id="{{this.id}}" data-toggle="modal"
+                data-target="#delModal">刪除</a>
             </div>
           </div>
-        {{/each}}
-
+        </div>
       </div>
     </div>
+    {{/each}}
   </div>
 </div>
 

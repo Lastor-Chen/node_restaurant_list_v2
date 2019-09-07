@@ -50,7 +50,7 @@
 
 .card .fa-eye {
   position: absolute;
-  top: 0;
+  top: calc(50% - 1.5rem);
   left: calc(50% - 1.5rem);
   font-size: 3rem;
   color: hsl(0, 0%, 90%);
@@ -74,13 +74,13 @@
 }
 
 @media screen and (max-width: 992px) {
-  .card img{
-    height: 115px;
+  .card img {
+    height: 220px;
   }
 }
 
-@media screen and (max-width: 575px) {
-  .card img{
+@media screen and (max-width: 768px) {
+  .card img {
     height: auto;
   }
 }
