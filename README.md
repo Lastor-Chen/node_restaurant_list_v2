@@ -6,22 +6,39 @@ Database used mongoDB.
 簡易的餐廳清單APP。 <br>
 這是一個用 Node.js 架設網站的練習專案。
 
+| 單元 | branch  |
+| ----| -------- |
+| A9  | master   |
+| A10 | refactor |
+
+
 #### 練習目標
+A9
 * 使用 Node.js 連結並操作 NoSQL 資料庫 mongoDB。
 * 操作資料庫實作 CRUD。
 * 於 Node.js 建立資料庫之 Model，學習 MVC 架構。
+
+A10
+* 透過中間件 method-override 製作符合 RESTful 之路由。
+* 使用 express.Router() 將路由與 controller 獨立出來。
+* 操作 mongoose 排序資料後顯示於頁面。
 
 
 ## Preview Pages
 <img src="./public/img/preview.jpg" alt="preview" width="500px">
 
 #### 功能
-* User 可以在首頁看到所有餐廳與概述。
-* User 可以點擊查看餐廳的詳細資訊。
-* User 可以搜尋餐廳名稱或分類。
-* User 可以新建餐廳資料。
-* User 可以編輯餐廳資料。
-* User 可以刪除餐廳資料。
+A9
+* 可以與資料庫互動，完成 CRUD 操作。
+    * 創建餐廳
+    * 瀏覽所有餐廳
+    * 瀏覽餐廳詳細
+    * 編輯餐廳資料
+    * 刪除餐廳
+* 可以透過餐廳名稱或類別進行搜尋。
+
+A10
+* 可以用不同的排序顯示所有餐廳。
 
 ## Usage
 此為本機端之練習專案，需下載後安裝依賴套件才可執行。
@@ -88,6 +105,7 @@ Database used mongoDB.
 * [Express.js](https://expressjs.com/) v4.17.1
 * [express-handlebars](https://www.npmjs.com/package/express-handlebars) v3.1.0
 * [mongoose](https://mongoosejs.com/) v5.6.12
+* [method-override](https://github.com/expressjs/method-override) v5.6.12
 
 #### other package (imported from CDN)
 * [Bootstrap](https://getbootstrap.com/) v4.3.1
