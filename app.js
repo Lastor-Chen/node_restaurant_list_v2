@@ -26,6 +26,10 @@ const option = {
 app.engine('hbs', exphbs(option) )
 app.set('view engine', 'hbs')
 
+// 引入 method-override
+const methodOverride = require('method-override')
+app.use(methodOverride('_method'))
+
 // Server 相關 setting
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
@@ -67,7 +71,7 @@ app.get('/restaurants/:id', (req, res) => {
   }) 
 })
 
-app.get('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id/delete', (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
     restaurant.remove(err => {
@@ -102,7 +106,7 @@ app.post('/restaurants/new', (req, res) => {
   res.redirect('/')
 })
 
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id/edit', (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
 

@@ -70,7 +70,8 @@
         </button>
       </div>
       <div class="modal-body text-right">
-        <form id="del-form" action="" method="GET" class="d-inline-block">
+        {{!-- {id} 為 delBtn.js 使用的 flag --}}
+        <form id="del-form" action="/restaurants/{id}/delete?_method=DELETE" method="POST" class="d-inline-block">
           <button type="submit" class="btn btn-outline-secondary">確定</button>
         </form>
         <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
