@@ -26,15 +26,15 @@
       <div class="dropdown">
         <button class="btn btn-outline-primary dropdown-toggle" type="button" id="sort-menu" data-toggle="dropdown">
           {{#if sort}}
-            {{lookup sortMap sort}}  {{!-- lookup {物件} {屬性} => 等於 JS 的 Obj[prop] --}}
+            {{lookup sortList sort}}  {{!-- lookup {物件} {屬性} => 等於 JS 的 Obj[prop] --}}
           {{else}}
             排序
           {{/if}}
         </button>
         <div class="dropdown-menu">
           {{!-- 加上 "../" 才能指到 each 外層的變數 --}}
-          {{#each sortKeys}}
-          <a class="dropdown-item" href="/index?sort={{this}}{{#if ../search}}&search={{../search}}{{/if}}">{{lookup ../sortMap this}}</a>
+          {{#each sortList.keys}}
+          <a class="dropdown-item" href="/index?sort={{this}}{{#if ../search}}&search={{../search}}{{/if}}">{{lookup ../sortList this}}</a>
           {{/each}}
         </div>
       </div>

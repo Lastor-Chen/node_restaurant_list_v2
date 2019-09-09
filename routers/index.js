@@ -5,7 +5,9 @@
 
 const express = require('express')
 const router = express.Router()
-const Restaurant = require('../models/restaurant.js')
+
+const Restaurant = require('../models/restaurant.js')       // mongoose Modal
+const sortList = require('../models/sortList.js')           // sort 列表
 
 // route '/'
 // =========================
@@ -19,15 +21,7 @@ router.get('/index', (req, res) => {
   const search = req.query.search
   const regexp = new RegExp(search, 'i')
 
-  // 儲存 sort 選擇
-  const sortMap = {
-    '-createdAt': '按最新',
-    createdAt: '按最舊',
-    name: '按名稱',
-    category: '按類別',
-    '-rating': '按評價',
-  }
-  const sortKeys = Object.keys(sortMap)
+  // 儲存 user 選擇的 sort
   const sort = req.query.sort
 
   Restaurant.find()
@@ -43,7 +37,7 @@ router.get('/index', (req, res) => {
       }
       
       const js = { delBtn: "delBtn", catch: 'catchError' }
-      res.render('index', { css: 'index', js, restaurants, sortMap, sortKeys, sort, search })
+      res.render('index', { css: 'index', js, restaurants, sortList, sort, search })
     })
 })
 
