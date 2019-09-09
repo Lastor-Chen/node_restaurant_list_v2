@@ -9,10 +9,6 @@ const mongoose = require('mongoose')                    // mongoDB ODM
 const exphbs = require('express-handlebars')            // template engine
 const methodOverride = require('method-override')       // middleware
 
-// 引入 Model
-const Restaurant = require('./models/restaurant.js')    // mongoose Model
-
-
 // 環境 setup
 // ==============================
 
