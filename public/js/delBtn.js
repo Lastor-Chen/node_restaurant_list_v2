@@ -2,5 +2,9 @@
 $('.del').on('click', e => {
   const id = e.target.dataset.id
   
-  $('#del-form').attr('action', `/restaurants/${id}/delete`)
+  // 將 id 注入 form action
+  let formAction = $('#del-form').attr('action')
+  formAction = formAction.replace('{id}', id)
+  
+  $('#del-form').attr('action', formAction)
 })

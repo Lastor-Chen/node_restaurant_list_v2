@@ -3,7 +3,7 @@
     {{#if new}}
     <form action="/restaurants/new" method="POST">
     {{else}}
-    <form action="/restaurants/{{restaurant.id}}/edit" method="POST">
+    <form action="/restaurants/{{restaurant.id}}/edit?_method=PUT" method="POST">
     {{/if}}
       <div class="form-row">
         <div class="form-group col-6">
@@ -12,7 +12,7 @@
             required>
         </div>
         <div class="form-group col-6">
-          <label for="category">分類</label>
+          <label for="category">類別</label>
           <input type="text" class="form-control" id="category" name="category" value="{{restaurant.category}}"
             placeholder="義式料理、日本料理...">
         </div>
