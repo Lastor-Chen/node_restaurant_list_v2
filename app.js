@@ -44,7 +44,6 @@ app.use(methodOverride('_method'))
 // ==============================
 
 app.use('/', require('./routers/index.js'))
-app.use('/search', require('./routers/search.js'))
 app.use('/restaurants', require('./routers/restaurants.js'))
 
 
