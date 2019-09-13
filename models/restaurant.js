@@ -1,7 +1,11 @@
+// models restaurant.js
+
+// Model Setup
+// ============================
+
 const mongoose = require('mongoose')
 
-// 製作 mongoose model
-const restaurantSchema = new mongoose.Schema({
+const schema = {
   name: {
     type: String,
     required: true
@@ -30,9 +34,13 @@ const restaurantSchema = new mongoose.Schema({
   description: {
     type: String
   }
+}
 
-}, { timestamps: true })  // 自動打時間戳
-
+// timestamps 自動建立時間戳 createdAt, updatedAt
+const restaurantSchema = new mongoose.Schema(schema, { timestamps: true })
 const Restaurant = mongoose.model('restaurant', restaurantSchema)
+
+// Export
+// ============================
 
 module.exports = Restaurant
