@@ -47,7 +47,14 @@ app.use(session({
 
 app.use(passport.initialize())
 app.use(passport.session())
+require('./config/passport.js')(passport)  // 執行 passport config
 
+app.use((req, res, next) => {   // 模板引擎公用變數
+  //user info
+  res.locals.user = req.user
+
+  next()
+})
 
 // route 設定
 // ==============================
