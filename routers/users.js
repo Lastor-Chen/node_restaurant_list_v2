@@ -11,6 +11,7 @@ const passport = require('passport')
 // route '/users'
 // =========================
 
+// 登入
 router.get('/signin', (req, res) => { 
   res.render('signin')
 })
@@ -22,6 +23,7 @@ router.post('/signin',
   })
 )
 
+// 註冊
 router.get('/signup', (req, res) => {
   res.render('signup')
 })
@@ -40,6 +42,12 @@ router.post('/signup', (req, res) => {
     User.create(input, (err) => console.error(err))
     res.redirect('/index')
   })
+})
+
+// 登出
+router.get('/signout', (req, res) => {
+  req.logout()
+  res.redirect('/users/signin')
 })
 
 // export
