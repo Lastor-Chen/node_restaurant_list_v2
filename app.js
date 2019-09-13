@@ -7,7 +7,10 @@
 const express = require('express')                      // framework
 const mongoose = require('mongoose')                    // mongoDB ODM
 const exphbs = require('express-handlebars')            // template engine
-const methodOverride = require('method-override')       // middleware
+
+const methodOverride = require('method-override')       // 控制 form method
+const session = require('express-session')              // session 輔助套件
+const passport = require('passport')                    // 處理 user authentication
 
 // 環境 setup
 // ==============================
@@ -27,13 +30,23 @@ const option = { extname: 'hbs', defaultLayout: 'main' }
 app.engine('hbs', exphbs(option) )
 app.set('view engine', 'hbs')
 
-// Server 相關 setting
+// Server 相關設定
 app.set('port', process.env.PORT || 3000)
 
 app.use(express.static('public'))
 
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+
+// authentication 相關設定
+app.use(session({
+  secret: 'h0 wu/ fu/ 20 ',
+  resave: false,
+  saveUninitialized: true
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 
 // route 設定
