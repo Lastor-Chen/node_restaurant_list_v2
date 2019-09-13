@@ -61,6 +61,7 @@ app.use((req, res, next) => {   // 模板引擎公用變數
 
 app.use('/', require('./routers/index.js'))
 app.use('/restaurants', require('./routers/restaurants.js'))
+app.use('/users', require('./routers/users.js'))
 
 
 // Start Server

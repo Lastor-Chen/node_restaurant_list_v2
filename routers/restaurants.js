@@ -1,6 +1,6 @@
 // router restaurants.js
 
-// 宣告
+// import
 // =========================
 
 const express = require('express')
