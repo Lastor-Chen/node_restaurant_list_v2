@@ -8,7 +8,6 @@ const mongoose = require('mongoose')
 const schema = {
   name: {
     type: String,
-    require: true
   },
   email: {
     type: String,
