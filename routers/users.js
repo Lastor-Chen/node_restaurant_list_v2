@@ -23,7 +23,19 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/signup', (req, res) => {
-  res.render('signup')
+  console.log(req.body)
+  const input = req.body
+
+  User.findOne({ email: input.email }, (err, user) => {
+    if (err) console.error(err)
+
+    // 如果 email 已註冊
+    if (user) return res.send('email已被註冊')
+    
+    // 確認 email 未註冊過，儲存帳戶到資料庫
+    User.create(input, (err) => console.error(err))
+    res.redirect('/index')
+  })
 })
 
 // export

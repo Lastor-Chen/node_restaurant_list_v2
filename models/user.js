@@ -14,7 +14,7 @@ const schema = {
     type: String,
     require: true
   },
-  email: {
+  password: {
     type: String,
     require: true
   }
