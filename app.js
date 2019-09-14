@@ -22,7 +22,7 @@ const isAuthed = require('./config/auth.js')
 const app = express()
 
 // 連接 mongoDB
-mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true, useCreateIndex: true })
 
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'mongoDB connection error.'))

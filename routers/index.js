@@ -17,14 +17,14 @@ router.get('/', (req, res) => {
 })
 
 router.get('/index', (req, res) => {
-  // 將 search 轉成正規表達式來比對餐廳名稱
+  // 儲存 search，轉成 RegExp
   const search = req.query.search
   const regexp = new RegExp(search, 'i')
 
   // 儲存 user 選擇的 sort
   const sort = req.query.sort
 
-  Restaurant.find()
+  Restaurant.find({ userId: req.user.id })
     .sort(sort)
     .exec((err, restaurants) => {
       if (err) return console.error(err)

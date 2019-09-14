@@ -7,6 +7,13 @@ const express = require('express')
 const router = express.Router()
 const Restaurant = require('../models/restaurant.js')
 
+// tool function
+// =========================
+
+function getOwnerId(req) {
+  return { _id: req.params.id, userId: req.user.id }
+}
+
 // route '/restaurants'
 // =========================
 
@@ -15,14 +22,14 @@ router.get('/new', (req, res) => {
 })
 
 router.get('/:id/edit', (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
+  Restaurant.findOne(getOwnerId(req), (err, restaurant) => {
     if (err) return console.error(err)
     res.render('newEdit', { restaurant })
   })
 })
 
 router.get('/:id', (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
+  Restaurant.findOne(getOwnerId(req), (err, restaurant) => {
     if (err) return console.error(err)
 
     const js = { delBtn: "delBtn", catch: 'catchError' }
@@ -31,7 +38,7 @@ router.get('/:id', (req, res) => {
 })
 
 router.delete('/:id/delete', (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
+  Restaurant.findOne(getOwnerId(req), (err, restaurant) => {
     if (err) return console.error(err)
     restaurant.remove(err => {
       if (err) return console.error(err)
@@ -41,14 +48,15 @@ router.delete('/:id/delete', (req, res) => {
 })
 
 router.post('/new', (req, res) => {
-  const input = req.body
+  const input = { ...req.body }  // 深拷貝，保護原始資料
+  input.userId = req.user.id
 
   Restaurant.create(input)
   res.redirect('/')
 })
 
 router.put('/:id/edit', (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
+  Restaurant.findOne(getOwnerId(req) , (err, restaurant) => {
     if (err) return console.error(err)
 
     for (const key in req.body) {
