@@ -47,14 +47,19 @@ router.post('/signup', (req, res, next) => {
     if (user) return res.render('signup', { input, error: '此 Email 已被使用' })
     
     // 密碼加鹽雜湊化，儲存帳戶到資料庫
-    bcrypt.hash(input.password, 10, (err, hash) => {
+    bcrypt.hash(input.password, 10, async (err, hash) => {
       if (err) return console.error(err)
       
       input.password = hash
-      User.create(input)
-      res.redirect('/users/signin')
-    })
+      await User.create(input)
 
+      // 資料庫儲存後，直接發 auth 憑證使登入
+      passport.authenticate('local', {
+        successRedirect: '/index',
+        failureRedirect: '/users/signin',
+        failureFlash: true
+      })(req, res, next)
+    })
   })
 })
 
