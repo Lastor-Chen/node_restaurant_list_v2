@@ -73,6 +73,7 @@ app.use((req, res, next) => {                   // 模板引擎公用變數
 // ==============================
 
 app.use('/users', require('./routers/users.js'))
+app.use('/OAuth', require('./routers/OAuth.js'))
 app.use('/restaurants', isAuthed, require('./routers/restaurants.js'))
 app.use('/', isAuthed, require('./routers/index.js'))   // root 必須放最後，請勿更動
 

@@ -44,7 +44,7 @@ const fbOption = {
 }
 
 function fbCallback(accessToken, refreshToken, profile, cb) {
-  User.findOne({ email: profile.email }, (err, user) => {
+  User.findOne({ email: profile._json.email }, (err, user) => {
     if (err) return console.error(err)
 
     // 如帳戶已存在，回傳 user
@@ -52,6 +52,7 @@ function fbCallback(accessToken, refreshToken, profile, cb) {
 
     // 如帳戶未存在，註冊新帳戶
     const userInfo = { ...profile._json }
+    delete userInfo.id
 
     // 亂數給予一組密碼，並加鹽
     userInfo.password = Math.random().toString(36).slice(-8)
