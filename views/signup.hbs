@@ -1,32 +1,43 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-8 col-md-6 col-lg-5 mx-auto">
+    <div class="col-8 col-md-6 col-lg-4 mx-auto">
 
       {{> alert}}
 
       <div class="card">
         <div class="card-body">
-          <h2 class="card-title text-center">Sign Up</h2>
+          <div class="text-center mb-3">
+            <i class="fas fa-utensils sign-icon"></i>
+            <p class="card-title mb-0">用飲食豐富你我的生活</p>
+          </div>
+          {{!-- 表單 --}}
           <form action="/users/signup" method="POST">
             <div class="form-group">
-              <label for="name">Name</label>
               <input type="text" class="form-control" id="name" name="name" value="{{input.name}}" placeholder="名稱">
             </div>
             <div class="form-group">
-              <label for="email">Email <span class="text-danger">*</span></label>
-              <input type="email" class="form-control" id="email" name="email" value="{{input.email}}" placeholder="sample@gmail.com">
+              <input type="email" class="form-control" id="email" name="email" value="{{input.email}}" placeholder="sample@gmail.com *" required>
             </div>
             <div class="form-group">
-              <label for="password">Password <span class="text-danger">*</span></label>
-              <input type="password" class="form-control" id="password" name="password" placeholder="密碼">
+              <input type="password" class="form-control" id="password" name="password" placeholder="密碼 (8~12位數) *" minlength="8" maxlength="12" required>
             </div>
             <div class="form-group">
-              <label for="password2">確認 Password <span class="text-danger">*</span></label>
-              <input type="password" class="form-control" id="password2" name="password2" placeholder="確認密碼">
+              <input type="password" class="form-control" id="password2" name="password2" placeholder="確認密碼 *" minlength="8" maxlength="12" required>
             </div>
             <button type="submit" class="btn btn-primary btn-block">註冊</button>
           </form>
-          <a href="javascript:;" id="fb-btn" class="btn btn-primary btn-block mt-3">使用 Facebook 繼續</a>
+
+          <div class="border-bottom mt-3"></div>
+          
+          {{!-- OAuth btn --}}
+          <div class="position-relative mt-3">
+            <i class="fab fa-facebook-square fb-icon"></i>
+            <a href="javascript:;" id="fb-btn" class="btn btn-primary btn-block">用 Facebook 繼續</a>
+          </div>
+          <div class="mt-4 text-center">
+            <span>已有帳號?</span>
+            <a href="/users/signin">登入</a>
+          </div>
         </div>
       </div>
     </div>
