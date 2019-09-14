@@ -1,9 +1,5 @@
-/* Google Font Noto Serif TC */
-@import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC&display=swap');
-
 body {
   background-color: #fff8f4;
-  font-family: 'Noto Serif TC', serif;
 }
 
 header {
