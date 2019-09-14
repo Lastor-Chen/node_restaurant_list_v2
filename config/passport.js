@@ -37,9 +37,9 @@ function localCallback(email, password, done) {
 // ==============================
 
 const fbOption = {
-  clientID: FACEBOOK_APP_ID,
-  clientSecret: FACEBOOK_APP_SECRET,
-  callbackURL: FACEBOOK_CALLBACK_URL,
+  clientID: process.env.FACEBOOK_ID,
+  clientSecret: process.env.FACEBOOK_SECRET,
+  callbackURL: process.env.FACEBOOK_CALLBACK,
   profileFields: ['email', 'displayName']
 }
 

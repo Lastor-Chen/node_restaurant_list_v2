@@ -6,8 +6,9 @@ Icon?
 Thumbs.db
 ehthumbs.db
 Desktop.ini
-# npm
-node_modules
+# Node.js & npm
+/node_modules
+.env
 package-lock.json
 *.log
 *.gz

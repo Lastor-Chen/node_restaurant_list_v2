@@ -21,6 +21,9 @@ const isAuthed = require('./config/auth.js')
 
 const app = express()
 
+// 使用 dev mode setting 
+if (process.env.NODE_ENV !== 'production') { require('dotenv').config() }
+
 // 連接 mongoDB
 mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true, useCreateIndex: true })
 
