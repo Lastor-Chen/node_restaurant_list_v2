@@ -36,7 +36,7 @@ router.get('/index', (req, res) => {
         )
       }
       
-      const js = { delBtn: "delBtn", catch: 'catchError' , index: 'index'}
+      const js = ['delBtn', 'catchError', 'index']
       res.render('index', { css: 'index', js, restaurants, sortList, sort, search })
     })
 })

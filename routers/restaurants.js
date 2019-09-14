@@ -45,7 +45,7 @@ router.get('/:id', (req, res) => {
       return res.redirect('/index')
     }
 
-    const js = { delBtn: "delBtn", catch: 'catchError' }
+    const js = ['delBtn', 'catchError']
     res.render('show', { css: 'show', js, restaurant })
   })
 })

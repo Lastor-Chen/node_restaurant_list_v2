@@ -14,7 +14,7 @@ const bcrypt = require('bcryptjs')
 
 // 登入
 router.get('/signin', (req, res) => { 
-  res.render('signin', { js: { popUp: 'popUp' } })
+  res.render('signin', { js: ['popUp'] })
 })
 
 router.post('/signin', 
@@ -28,7 +28,7 @@ router.post('/signin',
 
 // 註冊
 router.get('/signup', (req, res) => {
-  res.render('signup', { js: { popUp: 'popUp' } })
+  res.render('signup', { js: ['popUp'] })
 })
 
 router.post('/signup', (req, res, next) => {
