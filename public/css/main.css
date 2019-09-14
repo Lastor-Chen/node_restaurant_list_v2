@@ -10,13 +10,11 @@ header {
   overflow: hidden;
 }
 
-.navbar .navbar-brand,
-.navbar .nav-link {
+.navbar .navbar-brand {
   color: hsl(196.3, 43.4%, 47.9%);
 }
 
-.navbar .navbar-brand:hover,
-.navbar .nav-link:hover {
+.navbar .navbar-brand:hover {
   color: hsl(203.9, 60.3%, 33.5%);
 }
 

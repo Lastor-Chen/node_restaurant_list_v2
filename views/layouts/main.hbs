@@ -25,14 +25,12 @@
             width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
           <span>我的餐廳清單</span>
         </a>
-        <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="/restaurants/new">新增餐廳</a>
-          </li>
-        </ul>
         <div class="ml-auto">
-          <a href="/users/signin" class="btn btn-outline-info">登入</a>
+          {{#if user}}
           <a href="/users/signout" class="btn btn-outline-secondary">登出</a>
+          {{else}}
+          <a href="/users/signin" class="btn btn-outline-info">登入</a>
+          {{/if}}
         </div>
       </div>
     </nav>

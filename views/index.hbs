@@ -18,11 +18,11 @@
   </div>
 </div>
 
-<!-- restaurant list -->
-<div class="container mt-5">
-  {{!-- drop-down --}}
-  <div class="row">
-    <div class="col-auto mb-3">
+<!-- main content -->
+<main class="container mt-5">
+  <!-- sub menu -->
+  <div class="row mb-3">
+    <div class="col-auto">
       <div class="dropdown">
         <button class="btn btn-outline-primary dropdown-toggle" type="button" id="sort-menu" data-toggle="dropdown">
           {{#if sort}}
@@ -39,8 +39,12 @@
         </div>
       </div>
     </div>
+    <div class="col-auto">
+      <a class="btn btn-outline-primary" href="/restaurants/new">新增餐廳</a>
+    </div>
   </div>
-
+  
+  <!-- restaurant list -->
   <div class="row">
     {{#each restaurants}} 
     <div class="col-12 col-md-6 col-lg-4 col-xl-3">
@@ -78,7 +82,7 @@
     </div>
     {{/each}}
   </div>
-</div>
+</main>
 
 <!-- Bootstrap Modal -->
 <div class="modal fade" id="delModal" tabindex="-1" role="dialog">
