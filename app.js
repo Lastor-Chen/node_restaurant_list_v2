@@ -11,6 +11,7 @@ const exphbs = require('express-handlebars')            // template engine
 const methodOverride = require('method-override')       // 控制 form method
 const session = require('express-session')              // session 輔助套件
 const passport = require('passport')                    // 處理 user authentication
+const flash = require('connect-flash')                  // 產生 flash message
 
 // 引入自定義 module
 const isAuthed = require('./config/auth.js')
@@ -42,6 +43,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
 // authentication 相關設定
+app.use(flash())
 app.use(session({
   secret: 'h0 wu/ fu/ 20 ',
   resave: false,
@@ -53,8 +55,13 @@ app.use(passport.session())
 require('./config/passport.js')(passport)       // 執行 passport config
 
 app.use((req, res, next) => {                   // 模板引擎公用變數
-  //user info
+  // user info
   res.locals.user = req.user
+
+  // Auth flash message
+  res.locals.success = req.flash('success')
+  res.locals.warning = req.flash('warning')
+  res.locals.error = req.flash('error')
 
   next()
 })

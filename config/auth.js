@@ -8,6 +8,7 @@ function isAuthed(req, res, next) {
   if (req.isAuthenticated() ) return next()
 
   // 未登入
+  req.flash('warning', '尚未登入')
   res.redirect('/users/signin')
 }
 
