@@ -21,11 +21,18 @@ const isAuthed = require('./config/auth.js')
 
 const app = express()
 
-// 使用 dev mode setting 
+// Server 相關設定
+const MONGODB_URL = process.env.MONGODB_URI || 'mongodb://localhost/restaurant'
+app.set('port', process.env.PORT || 3000)
+app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
+
+// 開發模式 env setting 
 if (process.env.NODE_ENV !== 'production') { require('dotenv').config() }
 
 // 連接 mongoDB
-mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true, useCreateIndex: true })
+mongoose.connect(MONGODB_URL, { useNewUrlParser: true, useCreateIndex: true })
 
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'mongoDB connection error.'))
@@ -36,14 +43,6 @@ const option = { extname: 'hbs', defaultLayout: 'main' }
   
 app.engine('hbs', exphbs(option) )
 app.set('view engine', 'hbs')
-
-// Server 相關設定
-app.set('port', process.env.PORT || 3000)
-
-app.use(express.static('public'))
-
-app.use(express.urlencoded({ extended: true }))
-app.use(methodOverride('_method'))
 
 // authentication 相關設定
 app.use(flash())

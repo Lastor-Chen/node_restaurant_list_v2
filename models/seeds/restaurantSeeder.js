@@ -12,10 +12,12 @@ const users = require('./users.json').results
 const Restaurant = require('../restaurant.js')
 const restaurants = require('./restaurants.json').results
 
+const MONGODB_URL = process.env.MONGODB_URI || 'mongodb://localhost/restaurant'
+
 // 主執行序
 // =========================
 
-mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true, useCreateIndex: true })
+mongoose.connect(MONGODB_URL, { useNewUrlParser: true, useCreateIndex: true })
 
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'mongoDB connection error.'))
