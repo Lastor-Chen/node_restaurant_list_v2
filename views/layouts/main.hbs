@@ -25,11 +25,15 @@
             width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
           <span>我的餐廳清單</span>
         </a>
-        <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="/restaurants/new">新增餐廳</a>
-          </li>
-        </ul>
+        <div class="ml-auto">
+          {{#if user}}
+            <a href="/users/signout" class="btn btn-outline-secondary">登出</a>
+          {{else if signin}}
+            <a href="/users/signup" class="btn btn-outline-info">註冊</a>
+          {{else}}
+            <a href="/users/signin" class="btn btn-outline-info">登入</a>
+          {{/if}}
+        </div>
       </div>
     </nav>
   
@@ -39,10 +43,10 @@
   {{!-- partial layout --}}
   {{{ body }}}
 
-  <footer class="bg-dark mt-4">
+  <footer class="bg-dark mt-5">
     <div class="container py-4 text-center">
       <div class="d-inline-block mx-auto">
-        <a href="https://github.com/Lastor-Chen/node_restaurant_list_v2" target="_blank">
+        <a href="https://github.com/Lastor-Chen/node_restaurant_list_v2/tree/auth" target="_blank">
           <i class="fab fa-github"></i>
         </a>
         <span class="d-block text-white-50">
@@ -55,19 +59,20 @@
   </footer>
 
   <!-- script plug-ins -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <!-- custom JS -->
-  {{#if js.catch}}
-  <script src="/js/{{js.catch}}.js"></script>
-  {{/if}}
+  <import>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </import>
 
-  {{#if js.delBtn}}
-  <script src="/js/{{js.delBtn}}.js"></script>
+  <!-- custom JS -->
+  {{#if js}}
+    {{#each js}}
+      <script src="/js/{{this}}.js"></script>
+    {{/each}}
   {{/if}}
 </body>
 </html>

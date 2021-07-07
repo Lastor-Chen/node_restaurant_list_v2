@@ -1,123 +1,83 @@
-// ////////////////
-// 環境設定
+// App Server
 
-// 引入 framework
-const express = require('express')
+// import
+// ==============================
+
+// 引入 npm package
+const express = require('express')                      // framework
+const mongoose = require('mongoose')                    // mongoDB ODM
+const exphbs = require('express-handlebars')            // template engine
+
+const methodOverride = require('method-override')       // 控制 form method
+const session = require('express-session')              // session 輔助套件
+const passport = require('passport')                    // 處理 user authentication
+const flash = require('connect-flash')                  // 產生 flash message
+
+// 引入自定義 module
+const isAuthed = require('./config/auth.js')
+
+// 環境 setup
+// ==============================
+
 const app = express()
 
-// 引入資料庫 ODM
-const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true })
+// Server 相關設定
+const MONGODB_URL = process.env.MONGODB_URI || 'mongodb://localhost/restaurant'
+app.set('port', process.env.PORT || 3000)
+app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
+
+// 開發模式 env setting 
+if (process.env.NODE_ENV !== 'production') { require('dotenv').config() }
+
+// 連接 mongoDB
+mongoose.connect(MONGODB_URL, { useNewUrlParser: true, useCreateIndex: true })
 
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'mongoDB connection error.'))
 db.once('open', console.log.bind(console, 'mongoDB is connected.'))
 
-// 引入 mongoose model
-const Restaurant = require('./models/restaurant.js')
-
-// 設置 template engine
-const exphbs = require('express-handlebars')
-const option = {
-  extname: 'hbs',
-  defaultLayout: 'main',
-}
-
+// 設定 template engine
+const option = { extname: 'hbs', defaultLayout: 'main' }
+  
 app.engine('hbs', exphbs(option) )
 app.set('view engine', 'hbs')
 
-// Server 相關 setting
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }))
-app.set('port', process.env.PORT || 3000)
+// authentication 相關設定
+app.use(flash())
+app.use(session({
+  secret: 'h0 wu/ fu/ 20 ',
+  resave: false,
+  saveUninitialized: true
+}))
 
+app.use(passport.initialize())
+app.use(passport.session())
+require('./config/passport.js')(passport)       // 執行 passport config
 
-// ////////////////
-// 路由設定
-app.get('/', (req, res) => {
-  res.redirect('/index')
+app.use((req, res, next) => {                   // 模板引擎公用變數
+  // user info
+  res.locals.user = req.user
+
+  // Auth flash message
+  res.locals.success = req.flash('success')
+  res.locals.warning = req.flash('warning')
+  res.locals.error = req.flash('error')
+
+  next()
 })
 
-app.get('/index', (req, res) => {
-  Restaurant.find( (err, restaurants) => {
-    if (err) return console.error(err)
+// route 設定
+// ==============================
 
-    const js = { delBtn: "delBtn", catch: 'catchError' }
-    res.render('index', { css: 'index', js, restaurants })
-  })
-})
+app.use('/users', require('./routers/users.js'))
+app.use('/OAuth', require('./routers/OAuth.js'))
+app.use('/restaurants', isAuthed, require('./routers/restaurants.js'))
+app.use('/', isAuthed, require('./routers/index.js'))   // root 必須放最後，請勿更動
 
-app.get('/restaurants/new', (req, res) => {
-  res.render('newEdit', { new: 'new' })
-})
-
-app.get('/restaurants/:id/edit', (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
-    if (err) return console.error(err)
-    res.render('newEdit', { restaurant })
-  })
-})
-
-app.get('/restaurants/:id', (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
-    if (err) return console.error(err)
-
-    const js = { delBtn: "delBtn", catch: 'catchError' }
-    res.render('show', { css: 'show', js, restaurant })
-  }) 
-})
-
-app.get('/restaurants/:id/delete', (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
-    if (err) return console.error(err)
-    restaurant.remove(err => {
-      if (err) return console.error(err)
-      res.redirect('/')
-    })
-  })
-})
-
-app.get('/search', (req, res) => {
-  // 將 search keyword 轉成正規表達式來比對餐廳名稱
-  const keyword = req.query.keyword
-  const regexp = new RegExp(keyword, 'i')
-
-  Restaurant.find( (err, collection) => {
-    if (err) return console.error(err)
-
-    // 過濾 name & category
-    const restaurants = collection.filter(
-      item => item.name.match(regexp) || item.category.match(regexp)
-    )
-
-    const js = { delBtn: "delBtn", catch: 'catchError' }
-    res.render('index', { css: 'index', js, restaurants, keyword })
-  })
-})
-
-app.post('/restaurants/new', (req, res) => {
-  const input = req.body
-
-  Restaurant.create(input)
-  res.redirect('/')
-})
-
-app.post('/restaurants/:id/edit', (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
-    if (err) return console.error(err)
-
-    for (const key in req.body) {
-      restaurant[key] = req.body[key]
-    }
-    restaurant.save(err => {
-      if (err) return console.error(err)
-      res.redirect('/restaurants/' + req.params.id)
-    })
-  })
-})
-
-// ////////////////
-// 啟動 Server
+// Start Server
+// ==============================
 app.listen(app.get('port'), () => {
   console.log(`Node.js Server with Express is running => http://localhost:${app.get('port')}`)
 })
